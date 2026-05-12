@@ -1,5 +1,6 @@
 'use client'
 
+import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -10,35 +11,37 @@ import Link from "next/link";
 const DesktopNav = () => {
   const paths = useNavigation();
 
-  return ( 
+  return (
     <Card className="hidden lg:flex lg:flex-col lg:justify-between lg:items-center lg:h-full lg:w-16 lg:px-2 lg:py-4">
       <nav>
         <ul className="flex flex-col items-center gap-4">
-        {paths.map((path, i) => 
-
-          <li key={i} className="relative">
-            <Link href={path.href}>
-            <Tooltip>
-              <TooltipTrigger>
-                <Button size='icon-lg' variant={path.active? "default": 'outline'} >
-                  {path.icon}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>
-                  {path.name}
-                </p>
-              </TooltipContent>
-            </Tooltip>
-            </Link>
-            
-          </li>
-
-        )}
+          {paths.map((path, i) => (
+            <li key={i} className="relative">
+              <Link href={path.href}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button
+                      size="icon-lg"
+                      variant={path.active ? "default" : "outline"}
+                    >
+                      {path.icon}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{path.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </Link>
+            </li>
+          ))}
         </ul>
-        </nav>
-      <div className="flex flex-col items-center gap-4"><UserButton /></div>
-    </Card> );
+      </nav>
+      <div className="flex flex-col items-center gap-4">
+        <ModeToggle />
+        <UserButton />
+      </div>
+    </Card>
+  );
 }
  
 export default DesktopNav;

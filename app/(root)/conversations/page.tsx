@@ -1,6 +1,7 @@
 'use client';
 
-import { UserButton, useUser } from "@clerk/nextjs";
+import ConversationFallback from "@/components/shared/conversation/ConversationFallback";
+import { useUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const ConversationsPage = () => {
@@ -8,11 +9,7 @@ const ConversationsPage = () => {
   const data = useUser();
   if (!data.user) redirect("/sign-in");
   
-  return ( <div>
-    <p>
-      Conversations
-    </p>
-  </div> );
+  return ( <ConversationFallback /> );
 }
  
 export default ConversationsPage;
